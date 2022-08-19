@@ -10,12 +10,15 @@ services:
       - --port=40333
       - --ws-port=8844
       - --unsafe-ws-external
+      - --prometheus-external
+      - --prometheus-port=40399
       - --
       - --execution=wasm
       - --chain=rococo-local
       - --port=30343
       - --ws-port=9977
     ports:
+      - 40399:40399
       - 40333:40333
       - 8844:8844
       - 30343:30343

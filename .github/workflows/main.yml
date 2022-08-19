@@ -17,6 +17,9 @@ jobs:
           node-version: '16'
           cache: 'yarn'
       - run: yarn
+      - uses: ifaxity/wait-on-action
+        with:
+          resource: http://localhost:40399/metrics
       - run: yarn test
       - name: Stop containers
         if: always()
