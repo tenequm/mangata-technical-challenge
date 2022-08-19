@@ -16,7 +16,6 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
-      - uses: mxschmitt/action-tmate@v3
       - run: yarn
       - run: yarn test
       - name: Stop containers
