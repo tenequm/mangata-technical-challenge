@@ -17,8 +17,7 @@ jobs:
           - 30343:30343
           - 9977:9977
         options: >-
-          --entrypoint 
-          \'/mangata/node --bob --collator --force-authoring --chain=public-testnet --port=40333 --ws-port=8844 --unsafe-ws-external -- --execution=wasm --chain=rococo-local --port=30343 --ws-port=9977\'
+          --entrypoint'/mangata/node "--bob --collator --force-authoring --chain=public-testnet --port=40333 --ws-port=8844 --unsafe-ws-external -- --execution=wasm --chain=rococo-local --port=30343 --ws-port=9977"'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
