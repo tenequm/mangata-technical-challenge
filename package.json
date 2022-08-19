@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "dependencies": {
+    "@mangata-finance/sdk": "^1.4.0"
+  }
+}
