@@ -17,7 +17,7 @@ jobs:
           node-version: '16'
           cache: 'yarn'
       - run: yarn
-      - uses: ifaxity/wait-on-action
+      - uses: ifaxity/wait-on-action@v1
         with:
           resource: http://localhost:40399/metrics
       - run: yarn test
