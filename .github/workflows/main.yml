@@ -8,22 +8,17 @@ jobs:
   start_and_test_node:
     name: Start Mangata node and test it's response
     runs-on: ubuntu-latest
-    services:
-      mangata-node:
-        image: mangatasolutions/mangata-node:rococo-latest
-        ports:
-          - 40333:40333
-          - 8844:8844
-          - 30343:30343
-          - 9977:9977
-        options: >-
-          --entrypoint='/mangata/node "--bob --collator --force-authoring --chain=public-testnet --port=40333 --ws-port=8844 --unsafe-ws-external -- --execution=wasm --chain=rococo-local --port=30343 --ws-port=9977"'
     steps:
       - uses: actions/checkout@v3
+      - name: Start Mangata node
+        run: docker-compose up -d
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
       - uses: mxschmitt/action-tmate@v3
-      # - run: yarn
-      # - run: yarn test
+      - run: yarn
+      - run: yarn test
+      - name: Stop containers
+        if: always()
+        run: docker-compose down

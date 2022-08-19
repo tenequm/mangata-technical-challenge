@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  node:
+    image: mangatasolutions/mangata-node:rococo-latest
+    command:
+      - --bob
+      - --collator
+      - --force-authoring
+      - --chain=public-testnet
+      - --port=40333
+      - --ws-port=8844
+      - --unsafe-ws-external
+      - --
+      - --execution=wasm
+      - --chain=rococo-local
+      - --port=30343
+      - --ws-port=9977
+    ports:
+      - 40333:40333
+      - 8844:8844
+      - 30343:30343
+      - 9977:9977
