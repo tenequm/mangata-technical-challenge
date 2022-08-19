@@ -10,17 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Start Mangata node
         run: docker-compose up -d
-      - uses: actions/setup-node@v3
+      
+      - name: Setup caching for NPM dependencies
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
-      - run: yarn
-      - uses: ifaxity/wait-on-action@v1
+  
+      - name: Install dependencies
+        run: yarn
+     
+      - name: Waiting for node metrics endpoint to become available
+        uses: ifaxity/wait-on-action@v1
         with:
           resource: http://localhost:40399/metrics
-      - run: yarn test
-      - name: Stop containers
+      
+      - name: Test node endpoint
+        run: yarn test
+      
+      - name: Stop Mangata node
         if: always()
         run: docker-compose down
